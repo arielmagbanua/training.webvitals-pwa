@@ -1,0 +1,19 @@
+{
+  "name": "training.webvitals-pwa",
+  "version": "1.0.0",
+  "description": "Web Vitals and PWA Demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arielmagbanua/training.webvitals-pwa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arielmagbanua/training.webvitals-pwa/issues"
+  },
+  "homepage": "https://github.com/arielmagbanua/training.webvitals-pwa#readme"
+}
