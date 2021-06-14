@@ -11,7 +11,7 @@ const serverApp = express();
 serverApp.use(bodyParser.urlencoded({extended: false}));
 
 // set a static directory
-serverApp.use(express.static(path.join(__dirname, 'public')));
+serverApp.use(express.static(path.join(__dirname, 'dist/public')));
 
 serverApp.use(publicRoutes);
 
