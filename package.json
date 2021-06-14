@@ -5,6 +5,8 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
+    "watch": "gulp && gulp watch",
+    "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/arielmagbanua/training.webvitals-pwa#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "bootstrap": "^5.0.1",
     "express": "^4.17.1"
   },
   "devDependencies": {
