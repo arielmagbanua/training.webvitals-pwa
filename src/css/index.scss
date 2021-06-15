@@ -1,6 +1,19 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "carousel";
 
+.carousel-item {
+  .cover-photo {
+    object-fit: cover;
+    word-wrap: break-word;
+  }
+
+  .carousel-caption {
+    h1, p {
+      color: #dcdcdc;
+    }
+  }
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
