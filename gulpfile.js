@@ -4,6 +4,7 @@ const sourcemaps = require("gulp-sourcemaps");
 const babel = require("gulp-babel");
 const rollup = require('gulp-rollup');
 const concat = require('gulp-concat');
+const flatten = require('gulp-flatten');
 
 const paths = {
   views: {
@@ -28,7 +29,15 @@ const paths = {
     }
   },
   images: {
-    src: ['src/images/*.jpg', 'src/images/*.jpeg', 'src/images/*.png'],
+    src: [
+      'src/images/*.jpg',
+      'src/images/*.jpeg',
+      'src/images/*.png',
+      'src/images/**/*.jpg',
+      'src/images/**/*.jpeg',
+      'src/images/**/*.png'
+    ],
+    base: 'src/images/',
     dest: 'dist/public/images/'
   }
 };
@@ -62,6 +71,7 @@ const scripts = (cb) => {
 
 const images = (cb) => {
   src([...paths.images.src])
+    .pipe(flatten())
     .pipe(dest(paths.images.dest));
 
   cb();
