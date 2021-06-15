@@ -1,7 +1,17 @@
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "values";
+@import "features";
 @import "carousel";
 
+#home-carousel {
+  margin-bottom: 2rem;
+  height: $carousel-height;
+  width: 100%;
+}
+
 .carousel-item {
+  height: $carousel-height;
+
   .cover-photo {
     object-fit: cover;
     word-wrap: break-word;
@@ -11,6 +21,17 @@
     h1, p {
       color: #dcdcdc;
     }
+  }
+
+  > img {
+    height: $carousel-height;
+  }
+}
+
+.card-cover {
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }
 
