@@ -26,6 +26,10 @@ const paths = {
       index: 'index.js',
       products: 'products.js'
     }
+  },
+  images: {
+    src: ['src/images/*.jpg', 'src/images/*.jpeg', 'src/images/*.png'],
+    dest: 'dist/public/images/'
   }
 };
 
@@ -56,12 +60,19 @@ const scripts = (cb) => {
   cb();
 }
 
+const images = (cb) => {
+  src([...paths.images.src])
+    .pipe(dest(paths.images.dest));
+
+  cb();
+}
+
 exports.watch = () => {
   watch(
-    ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src],
+    ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src, ...paths.images.src],
     {ignoreInitial: false},
-    series(styles, scripts, views)
+    series(styles, scripts, images, views)
   );
 }
 
-exports.default = series(styles, scripts, views);
+exports.default = series(styles, scripts, images, views);
