@@ -2,6 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+// for json server
+const jsonServer = require('json-server');
+const apiRouter = jsonServer.router(path.join(__dirname, 'database/db.json'));
+
 // routes
 const publicRoutes = require('./routes/public');
 
@@ -14,6 +18,9 @@ serverApp.use(bodyParser.urlencoded({extended: false}));
 serverApp.use(express.static(path.join(__dirname, '../dist/public')));
 
 serverApp.use(publicRoutes);
+
+// json server routes
+serverApp.use('/api', apiRouter);
 
 const server = serverApp.listen(process.env.port || 8080, () => {
   const host = server.address().address;

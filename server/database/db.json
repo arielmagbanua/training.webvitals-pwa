@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "id": "bag-sku-1",
+      "sku": "bag-sku-1",
+      "name": "Luck Leather Bag",
+      "description": "The luckiest bag ever!",
+      "url": "https://pwademo.arielmagbanua.com/products/bag-sku-1",
+      "category": [
+        "bag",
+        "casual",
+        "backpack"
+      ],
+      "brand": "Levi's",
+      "price": 15.5,
+      "featureType": 1
+    },
+    {
+      "id": "bag-sku-2",
+      "sku": "bag-sku-2",
+      "name": "Awesome Bag",
+      "description": "Bag made from awesome materials but with cheap price.",
+      "url": "https://pwademo.arielmagbanua.com/products/bag-sku-2",
+      "category": [
+        "bag",
+        "casual",
+        "backpack"
+      ],
+      "brand": "Levi's",
+      "price": 20.5,
+      "featureType": 1
+    },
+    {
+      "id": "bag-sku-3",
+      "sku": "bag-sku-3",
+      "name": "Cool Backpack",
+      "description": "A very cool backpack",
+      "url": "https://pwademo.arielmagbanua.com/products/bag-sku-3",
+      "category": [
+        "backpack"
+      ],
+      "brand": "Levi's",
+      "price": 10.5,
+      "featureType": 1
+    },
+    {
+      "id": "bag-sku-3",
+      "sku": "bag-sku-3",
+      "name": "Cool Backpack",
+      "description": "A very cool backpack",
+      "url": "https://pwademo.arielmagbanua.com/products/bag-sku-3",
+      "category": [
+        "backpack"
+      ],
+      "brand": "Levi's",
+      "price": 10.5,
+      "featureType": 1
+    }
+  ]
+}
