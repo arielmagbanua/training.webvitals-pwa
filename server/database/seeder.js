@@ -23,9 +23,30 @@ fs.readdir(DIR_PATH, function (err, files) {
     const [_, brand, categorySegment] = filename.split('-');
 
     // extract the categories of the product
-    const categories = categorySegment.split(/[\s.,;()]+/i);
+    let categories = categorySegment.split(/[\s.,;()]+/i);
     categories.pop();
     categories.shift();
+
+    // get the feature
+    let feature = lodash.findLast(categories, function (category) {
+      return category === 'feature1' || category === 'feature2' || category === 'feature3';
+    });
+
+    categories = lodash.without(categories, 'feature1', 'feature2', 'feature3');
+
+    switch (feature) {
+      case 'feature1':
+        feature = 1;
+        break;
+      case 'feature2':
+        feature = 2;
+        break;
+      case 'feature3':
+        feature = 3;
+        break;
+      default:
+        feature = null;
+    }
 
     const productName = faker.name.firstName() + ' Bag';
     const sku = faker.datatype.uuid();
@@ -41,7 +62,7 @@ fs.readdir(DIR_PATH, function (err, files) {
       "category": categories,
       "brand": brand,
       "price": productPrice,
-      "featureType": lodash.random(1, 3)
+      "featureType": feature
     };
 
     products.push(product);
