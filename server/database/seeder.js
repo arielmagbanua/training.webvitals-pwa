@@ -58,7 +58,7 @@ fs.readdir(DIR_PATH, function (err, files) {
       "sku": sku,
       "name": productName,
       "description": productDescription,
-      "url": BASE_URL + 'products/' + sku,
+      "url": BASE_URL + 'images/' + filename,
       "category": categories,
       "brand": brand,
       "price": productPrice,
@@ -68,10 +68,14 @@ fs.readdir(DIR_PATH, function (err, files) {
     products.push(product);
   });
 
-  // write it as db.json for json server
-  const productsData = JSON.stringify(products, null, 2);
+  const db = {
+    "products": products
+  }
 
-  fs.writeFile(DB_PATH, productsData, (err) => {
+  // write it as db.json for json server
+  const dbStr = JSON.stringify(db, null, 2);
+
+  fs.writeFile(DB_PATH, dbStr, (err) => {
     if (err) {
       throw err;
     }
