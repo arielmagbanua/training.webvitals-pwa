@@ -35,6 +35,18 @@
   }
 }
 
+img.new-arrival-img {
+  object-fit: cover;
+  width: 350px;
+  height: 350px;
+}
+
+.new-arrival-img-container {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
