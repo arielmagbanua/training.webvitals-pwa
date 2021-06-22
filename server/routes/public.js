@@ -11,4 +11,8 @@ router.get('/', (req, res, next) => {
   res.sendFile(path.join(rootDir, viewsDir, 'index.html'));
 });
 
+router.get('/products', (req, res, next) => {
+  res.sendFile(path.join(rootDir, viewsDir, 'products.html'));
+});
+
 module.exports = router;
