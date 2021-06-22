@@ -50,15 +50,20 @@ fs.readdir(DIR_PATH, function (err, files) {
 
     const productName = faker.name.firstName() + ' Bag';
     const sku = faker.datatype.uuid();
-    const productDescription = 'Amazing ' + faker.commerce.productAdjective() + ' Bag';
+    const productDescription = 'Amazing ' + faker.commerce.productAdjective() + ' Bag.';
     const productPrice = faker.commerce.price();
+
+    const additionalDescription = feature === 3 ? ' Imported and newly arrived from ' + lodash.sample([
+      'Italy', 'France', 'Spain', 'USA'
+    ]) + '!' : '';
 
     const product = {
       "id": sku,
       "sku": sku,
       "name": productName,
-      "description": productDescription,
-      "url": BASE_URL + 'images/' + filename,
+      "description": productDescription + additionalDescription,
+      "imageUrl": BASE_URL + 'images/' + filename,
+      "url": BASE_URL + 'products/' + sku,
       "category": categories,
       "brand": brand,
       "price": productPrice,
