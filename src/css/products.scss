@@ -1,0 +1,15 @@
+@import "index";
+
+.hover-elevated:hover {
+  @extend .shadow
+}
+
+.card-img-top {
+  height: 15rem;
+  object-fit: cover;
+}
+
+.card-text-container {
+  min-height: 5rem;
+  max-height: 7rem;
+}

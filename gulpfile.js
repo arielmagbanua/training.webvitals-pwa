@@ -60,11 +60,26 @@ const styles = (cb) => {
 }
 
 const scripts = (cb) => {
-  src([...paths.js.concat.files, paths.js.src])
+  const bootstrap = 'node_modules/bootstrap/dist/js/bootstrap.js';
+  const indexJsPath = 'src/js/index.js';
+  const productsJsPath = 'src/js/products.js';
+
+  src([...paths.js.concat.files, indexJsPath])
     .pipe(sourcemaps.init())
     .pipe(concat(paths.js.files.index))
     .pipe(sourcemaps.write("."))
     .pipe(dest(paths.js.dest));
+
+  src([...paths.js.concat.files, productsJsPath])
+      .pipe(sourcemaps.init())
+      .pipe(sourcemaps.write("."))
+      .pipe(dest(paths.js.dest));
+
+  // src([...paths.js.concat.files, paths.js.src])
+  //   .pipe(sourcemaps.init())
+  //   .pipe(concat(paths.js.files.index))
+  //   .pipe(sourcemaps.write("."))
+  //   .pipe(dest(paths.js.dest));
 
   cb();
 }
