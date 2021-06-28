@@ -4,7 +4,7 @@
   "description": "Web Vitals and PWA Demo",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "nodemon server/index.js",
     "watch": "gulp watch",
     "build": "gulp",
     "seed": "node server/database/seeder.js",
@@ -25,6 +25,7 @@
     "bootstrap": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
     "json-server": "^0.16.3",
     "lodash": "^4.17.21"
   },
@@ -40,6 +41,7 @@
     "gulp-flatten": "^0.4.0",
     "gulp-rollup": "^2.17.0",
     "gulp-sass": "^4.1.0",
-    "gulp-sourcemaps": "^3.0.0"
+    "gulp-sourcemaps": "^3.0.0",
+    "nodemon": "^2.0.7"
   }
 }
