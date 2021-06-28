@@ -15,4 +15,16 @@ router.get('/products', (req, res, next) => {
   res.sendFile(path.join(rootDir, viewsDir, 'products.html'));
 });
 
+router.get('/products/:sku', (req, res, next) => {
+  const sku = req.params.sku;
+  res.render('product', {
+    layout: 'index',
+    product: {
+      sku: sku
+    }
+  });
+
+  // res.sendFile(path.join(rootDir, viewsDir, 'products.html'));
+});
+
 module.exports = router;
