@@ -1,6 +1,8 @@
 const path = require('path');
 const express = require('express');
 const rootDir = require('../utils/path');
+const axios = require('axios').default;
+require('dotenv').config();
 
 const router = express.Router();
 
@@ -15,16 +17,17 @@ router.get('/products', (req, res, next) => {
   res.sendFile(path.join(rootDir, viewsDir, 'products.html'));
 });
 
-router.get('/products/:sku', (req, res, next) => {
+router.get('/products/:sku', async (req, res, next) => {
   const sku = req.params.sku;
-  res.render('product', {
-    layout: 'index',
-    product: {
-      sku: sku
-    }
-  });
 
-  // res.sendFile(path.join(rootDir, viewsDir, 'products.html'));
+  // grab the product
+  const productUrl = process.env.APP_URL + 'api/products/' + sku;
+  const product = await axios.get(productUrl);
+
+  res.render('product', {
+    layout: 'product',
+    product: product.data
+  });
 });
 
 module.exports = router;
