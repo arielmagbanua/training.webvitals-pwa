@@ -1,3 +1,46 @@
-<div class="container">
-  <h1>{{ product.sku }}</h1>
-</div>
+<main>
+  <div class="container mt-5 mb-5">
+    <div class="card">
+      <div class="row g-0">
+        <div class="col-md-6 border-end">
+          <div class="d-flex flex-column justify-content-center">
+            <div class="main_image">
+              <img src="{{ product.imageUrl }}" id="main_product_image" alt="{{ product.name }}" width="350"></div>
+          </div>
+
+          <div class="thumbnail_images">
+            <ul id="thumbnail">
+              <li><img onclick="changeImage(this)" src="{{ product.imageUrl }}" width="70"></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="p-3 right-side">
+            <div class="d-flex justify-content-between align-items-center">
+              <h3>{{ product.name }}</h3>
+            </div>
+
+            <div class="mt-2 pr-3 content">
+              <p>{{ product.description }}</p>
+            </div>
+
+            <h3>${{ product.price }}</h3>
+
+            <div class="buttons d-flex flex-row mt-5 gap-3">
+              <button class="btn btn-outline-dark">Buy Now</button>
+              <button class="btn btn-dark">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  function changeImage(element) {
+    var main_prodcut_image = document.getElementById('main_product_image');
+    main_prodcut_image.src = element.src;
+  }
+</script>
