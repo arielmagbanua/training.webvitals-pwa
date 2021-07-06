@@ -6,7 +6,7 @@ const lodash = require('lodash');
 
 const DIR_PATH = path.join(__dirname, '../../src/images/bags');
 const DB_PATH = path.join(__dirname, 'db.json');
-const BASE_URL = process.env.APP_URL || 'http://localhost:8080/';
+const BASE_URL = process.env.APP_URL || '/';
 
 // passing directoryPath and callback function
 fs.readdir(DIR_PATH, function (err, files) {
