@@ -1,0 +1,16 @@
+runtime: nodejs14
+instance_class: F1
+env_variables:
+  APP_URL: "http://127.0.0.1/"
+handlers:
+- url: /images
+  static_dir: dist/public/images
+- url: /css
+  static_dir: dist/public/css
+- url: /js
+  static_dir: dist/public/js
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  script: auto
+
