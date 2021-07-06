@@ -60,15 +60,19 @@ const createNewArrivalElement = (product, index) => {
   let descriptionBlock = `
     <div class="col-md-7">
       <h2 class="featurette-heading">
-        <span class="text-muted">${product.name}</span>
+        <span class="text-muted">
+          <a href="${product.url}">${product.name}</a>
+        </span>
       </h2>
       <p class="lead">${product.description}</p>
     </div>
   `;
 
   const imageBlockBlock = `
-     <div class="col-md-5 new-arrival-img-container">
-        <img src="${product.imageUrl}" class="new-arrival-img img-fluid" alt="${product.name}">
+      <div class="col-md-5 new-arrival-img-container">
+        <a href="${product.url}">
+          <img src="${product.imageUrl}" class="new-arrival-img img-fluid" alt="${product.name}">
+        </a>
       </div>
   `;
 
