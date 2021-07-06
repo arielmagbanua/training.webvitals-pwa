@@ -1,5 +1,5 @@
 const getFeaturedType = async (type) => {
-  const rawData = await fetch(`http://localhost:8080/api/products?featureType=${type}&_limit3`);
+  const rawData = await fetch(`/api/products?featureType=${type}&_limit3`);
   return await rawData.json();
 }
 

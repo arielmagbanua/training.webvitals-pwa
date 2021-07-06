@@ -1,5 +1,5 @@
 const allProducts = async () => {
-  const rawData = await fetch(`http://localhost:8080/api/products`);
+  const rawData = await fetch(`/api/products`);
   return await rawData.json();
 }
 
