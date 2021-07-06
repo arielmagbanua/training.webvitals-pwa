@@ -4,7 +4,8 @@
   "description": "Web Vitals and PWA Demo",
   "main": "server/index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "start-mon": "nodemon server/index.js",
     "watch": "gulp watch",
     "build": "gulp",
     "seed": "node server/database/seeder.js",
