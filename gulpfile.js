@@ -5,6 +5,7 @@ const babel = require("gulp-babel");
 const concat = require('gulp-concat');
 const flatten = require('gulp-flatten');
 const webp = require('gulp-webp');
+const imagemin = require('gulp-imagemin');
 
 const paths = {
   views: {
@@ -88,8 +89,9 @@ const scripts = (cb) => {
 
 const images = (cb) => {
   src([...paths.images.src])
-    .pipe(flatten())
+    .pipe(imagemin())
     .pipe(webp())
+    .pipe(flatten())
     .pipe(dest(paths.images.dest));
 
   cb();
