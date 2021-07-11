@@ -4,6 +4,7 @@ const sourcemaps = require("gulp-sourcemaps");
 const babel = require("gulp-babel");
 const concat = require('gulp-concat');
 const flatten = require('gulp-flatten');
+const webp = require('gulp-webp');
 
 const paths = {
   views: {
@@ -88,6 +89,7 @@ const scripts = (cb) => {
 const images = (cb) => {
   src([...paths.images.src])
     .pipe(flatten())
+    .pipe(webp())
     .pipe(dest(paths.images.dest));
 
   cb();
