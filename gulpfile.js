@@ -2,7 +2,6 @@ const { src, dest, series, watch } = require('gulp');
 const sass = require('gulp-sass');
 const sourcemaps = require("gulp-sourcemaps");
 const babel = require("gulp-babel");
-const rollup = require('gulp-rollup');
 const concat = require('gulp-concat');
 const flatten = require('gulp-flatten');
 

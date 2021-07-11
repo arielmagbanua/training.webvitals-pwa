@@ -41,7 +41,6 @@
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-flatten": "^0.4.0",
-    "gulp-rollup": "^2.17.0",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "nodemon": "^2.0.7"
