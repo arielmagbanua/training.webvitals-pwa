@@ -66,20 +66,22 @@ const scripts = (cb) => {
 
   src([...paths.js.concat.files, indexJsPath])
     .pipe(sourcemaps.init())
+    .pipe(concat(bootstrap))
     .pipe(concat(paths.js.files.index))
+    .pipe(babel({
+      presets: ['@babel/env']
+     }))
     .pipe(sourcemaps.write("."))
     .pipe(dest(paths.js.dest));
 
   src([...paths.js.concat.files, productsJsPath])
       .pipe(sourcemaps.init())
+      .pipe(concat(bootstrap))
+      .pipe(babel({
+        presets: ['@babel/env']
+      }))
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
-
-  // src([...paths.js.concat.files, paths.js.src])
-  //   .pipe(sourcemaps.init())
-  //   .pipe(concat(paths.js.files.index))
-  //   .pipe(sourcemaps.write("."))
-  //   .pipe(dest(paths.js.dest));
 
   cb();
 }
