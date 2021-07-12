@@ -7,6 +7,7 @@ const flatten = require('gulp-flatten');
 const webp = require('gulp-webp');
 const imagemin = require('gulp-imagemin');
 const uglify = require('gulp-uglify');
+const cleanCSS = require('gulp-clean-css');
 
 const paths = {
   views: {
@@ -55,6 +56,7 @@ const styles = (cb) => {
   src(paths.scss.src)
       .pipe(sourcemaps.init())
       .pipe(sass().on('error', sass.logError))
+      .pipe(cleanCSS({compatibility: 'ie8'}))
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.scss.dest));
 
