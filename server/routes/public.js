@@ -14,7 +14,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/products', (req, res, next) => {
-  res.sendFile(path.join(rootDir, viewsDir, 'products.html'));
+  res.render('products', {
+    layout: 'products'
+  });
 });
 
 router.get('/products/:sku', async (req, res, next) => {
