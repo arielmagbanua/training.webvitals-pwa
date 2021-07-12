@@ -55,7 +55,7 @@ const styles = (cb) => {
   src(paths.scss.src)
       .pipe(sourcemaps.init())
       .pipe(sass().on('error', sass.logError))
-      .pipe(cleanCSS({compatibility: 'ie8'}))
+      .pipe(cleanCSS({compatibility: 'ie8'})) // minify css
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.scss.dest));
 
@@ -69,13 +69,13 @@ const scripts = (cb) => {
   src([...paths.js.concat.files, indexJsPath])
       .pipe(sourcemaps.init())
       .pipe(concat(paths.js.files.index))
-      .pipe(uglify())
+      .pipe(uglify()) // minify js
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
 
   src([...paths.js.concat.files, productsJsPath])
       .pipe(sourcemaps.init())
-      .pipe(uglify())
+      .pipe(uglify()) // minify js
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
 
@@ -84,8 +84,8 @@ const scripts = (cb) => {
 
 const images = (cb) => {
   src([...paths.images.src])
-      .pipe(imagemin())
-      .pipe(webp())
+      .pipe(imagemin()) // optimized images
+      .pipe(webp()) // convert to webp format
       .pipe(flatten())
       .pipe(dest(paths.images.dest));
 
