@@ -1,20 +1,19 @@
-const path = require('path');
 const express = require('express');
-const rootDir = require('../utils/path');
 const axios = require('axios').default;
 require('dotenv').config();
 
 const router = express.Router();
 
-// presentation layer main directory
-const viewsDir = '../dist/views';
-
 router.get('/', (req, res, next) => {
-  res.sendFile(path.join(rootDir, viewsDir, 'index.html'));
+  res.render('index', {
+    layout: 'index'
+  });
 });
 
 router.get('/products', (req, res, next) => {
-  res.sendFile(path.join(rootDir, viewsDir, 'products.html'));
+  res.render('products', {
+    layout: 'products'
+  });
 });
 
 router.get('/products/:sku', async (req, res, next) => {
