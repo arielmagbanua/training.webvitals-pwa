@@ -7,10 +7,12 @@ require('dotenv').config();
 const router = express.Router();
 
 // presentation layer main directory
-const viewsDir = '../dist/views';
+// const viewsDir = '../dist/views';
 
 router.get('/', (req, res, next) => {
-  res.sendFile(path.join(rootDir, viewsDir, 'index.html'));
+  res.render('index', {
+    layout: 'index'
+  });
 });
 
 router.get('/products', (req, res, next) => {
