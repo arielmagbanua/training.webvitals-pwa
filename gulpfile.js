@@ -1,4 +1,4 @@
-const { src, dest, series, watch } = require('gulp');
+const {src, dest, series, watch} = require('gulp');
 const sass = require('gulp-sass');
 const sourcemaps = require("gulp-sourcemaps");
 const babel = require("gulp-babel");
@@ -6,6 +6,7 @@ const concat = require('gulp-concat');
 const flatten = require('gulp-flatten');
 const webp = require('gulp-webp');
 const imagemin = require('gulp-imagemin');
+const uglify = require('gulp-uglify');
 
 const paths = {
   views: {
@@ -45,42 +46,41 @@ const paths = {
 
 const views = (cb) => {
   src(paths.views.src)
-    .pipe(dest(paths.views.dest));
+      .pipe(dest(paths.views.dest));
 
   cb();
 }
 
 const styles = (cb) => {
   src(paths.scss.src)
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write("."))
-    .pipe(dest(paths.scss.dest));
+      .pipe(sourcemaps.init())
+      .pipe(sass().on('error', sass.logError))
+      .pipe(sourcemaps.write("."))
+      .pipe(dest(paths.scss.dest));
 
   cb();
 }
 
 const scripts = (cb) => {
-  const bootstrap = 'node_modules/bootstrap/dist/js/bootstrap.js';
   const indexJsPath = 'src/js/index.js';
   const productsJsPath = 'src/js/products.js';
 
   src([...paths.js.concat.files, indexJsPath])
-    .pipe(sourcemaps.init())
-    .pipe(concat(bootstrap))
-    .pipe(concat(paths.js.files.index))
-    .pipe(babel({
-      presets: ['@babel/env']
-     }))
-    .pipe(sourcemaps.write("."))
-    .pipe(dest(paths.js.dest));
-
-  src([...paths.js.concat.files, productsJsPath])
       .pipe(sourcemaps.init())
-      .pipe(concat(bootstrap))
+      .pipe(concat(paths.js.files.index))
       .pipe(babel({
         presets: ['@babel/env']
       }))
+      .pipe(uglify())
+      .pipe(sourcemaps.write("."))
+      .pipe(dest(paths.js.dest));
+
+  src([...paths.js.concat.files, productsJsPath])
+      .pipe(sourcemaps.init())
+      .pipe(babel({
+        presets: ['@babel/env']
+      }))
+      .pipe(uglify())
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
 
@@ -89,19 +89,19 @@ const scripts = (cb) => {
 
 const images = (cb) => {
   src([...paths.images.src])
-    .pipe(imagemin())
-    .pipe(webp())
-    .pipe(flatten())
-    .pipe(dest(paths.images.dest));
+      .pipe(imagemin())
+      .pipe(webp())
+      .pipe(flatten())
+      .pipe(dest(paths.images.dest));
 
   cb();
 }
 
 exports.watch = () => {
   watch(
-    ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src, ...paths.images.src],
-    {ignoreInitial: false},
-    series(styles, scripts, images, views)
+      ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src, ...paths.images.src],
+      {ignoreInitial: false},
+      series(styles, scripts, images, views)
   );
 }
 
