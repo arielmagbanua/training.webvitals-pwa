@@ -58,20 +58,17 @@ const styles = (cb) => {
 }
 
 const scripts = (cb) => {
-  const bootstrap = 'node_modules/bootstrap/dist/js/bootstrap.js';
   const indexJsPath = 'src/js/index.js';
   const productsJsPath = 'src/js/products.js';
 
   src([...paths.js.concat.files, indexJsPath])
       .pipe(sourcemaps.init())
-      .pipe(concat(bootstrap))
       .pipe(concat(paths.js.files.index))
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
 
   src([...paths.js.concat.files, productsJsPath])
       .pipe(sourcemaps.init())
-      .pipe(concat(bootstrap))
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
 
