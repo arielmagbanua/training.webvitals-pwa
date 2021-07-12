@@ -1,7 +1,6 @@
 const {src, dest, series, watch} = require('gulp');
 const sass = require('gulp-sass');
-const sourcemaps = require("gulp-sourcemaps");
-const babel = require("gulp-babel");
+const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const flatten = require('gulp-flatten');
 const webp = require('gulp-webp');
@@ -70,18 +69,12 @@ const scripts = (cb) => {
   src([...paths.js.concat.files, indexJsPath])
       .pipe(sourcemaps.init())
       .pipe(concat(paths.js.files.index))
-      .pipe(babel({
-        presets: ['@babel/env']
-      }))
       .pipe(uglify())
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
 
   src([...paths.js.concat.files, productsJsPath])
       .pipe(sourcemaps.init())
-      .pipe(babel({
-        presets: ['@babel/env']
-      }))
       .pipe(uglify())
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
