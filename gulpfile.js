@@ -1,12 +1,11 @@
-const {src, dest, series, watch} = require('gulp');
+const {src, dest, series, watch, task} = require('gulp');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
-const flatten = require('gulp-flatten');
-const webp = require('gulp-webp');
-const imagemin = require('gulp-imagemin');
 const uglify = require('gulp-uglify');
 const cleanCSS = require('gulp-clean-css');
+const imagemin = require('imagemin');
+const imageminWebp = require('imagemin-webp');
 
 const paths = {
   views: {
@@ -55,7 +54,14 @@ const styles = (cb) => {
   src(paths.scss.src)
       .pipe(sourcemaps.init())
       .pipe(sass().on('error', sass.logError))
-      .pipe(cleanCSS({compatibility: 'ie8'})) // minify css
+      .pipe(cleanCSS({ // minify css
+        compatibility: 'ie8',
+        level: {
+          1: {
+            specialComments: 0
+          }
+        }
+      }))
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.scss.dest));
 
@@ -82,22 +88,50 @@ const scripts = (cb) => {
   cb();
 }
 
-const images = (cb) => {
-  src([...paths.images.src])
-      .pipe(imagemin()) // optimized images
-      .pipe(webp()) // convert to webp format
-      .pipe(flatten())
-      .pipe(dest(paths.images.dest));
+const webpImages = (cb) => {
+  // the quality of compression.
+  const quality = 90;
+
+  // 1440p resizing for desktops.
+  imagemin([...paths.images.src], {
+    destination: __dirname + '/dist/public/images/',
+    plugins: [
+      imageminWebp({
+        quality: quality,
+        resize: {
+          width: 1440,
+          height: 0
+        }
+      })
+    ]
+  });
+
+  // 800 and 500 width resizing for mobile and tablets.
+  [800, 500].forEach((size) => {
+    imagemin([...paths.images.src], {
+      destination: __dirname + `/dist/public/images/${size}`,
+      plugins: [
+        imageminWebp({
+          quality: quality,
+          resize: {
+            width: size,
+            height: 0
+          }
+        })
+      ]
+    });
+  });
 
   cb();
 }
 
-exports.watch = () => {
+task('watch', () => {
   watch(
-      ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src, ...paths.images.src],
-      {ignoreInitial: false},
-      series(styles, scripts, images, views)
+    ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src, ...paths.images.src],
+    {ignoreInitial: false},
+    series(styles, scripts, views)
   );
-}
+});
 
-exports.default = series(styles, scripts, images, views);
+task('default', series(styles, scripts, views, webpImages));
+task('images', webpImages);
