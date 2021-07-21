@@ -90,16 +90,17 @@ const scripts = (cb) => {
 
 const webpImages = (cb) => {
   // the quality of compression.
-  const quality = 90;
+  const quality = 100;
+  const maxWidth = 1920;
 
-  // 1440p resizing for desktops.
+  // 1920 resizing for desktops.
   imagemin([...paths.images.src], {
     destination: __dirname + '/dist/public/images/',
     plugins: [
       imageminWebp({
         quality: quality,
         resize: {
-          width: 1440,
+          width: maxWidth,
           height: 0
         }
       })
@@ -107,14 +108,17 @@ const webpImages = (cb) => {
   });
 
   // 800 and 500 width resizing for mobile and tablets.
-  [800, 500].forEach((size) => {
+  [25, 50, 75].forEach((percent) => {
+    const percentage = maxWidth * ((100 - percent) / 100);
+    const width = Math.round(maxWidth - percentage);
+
     imagemin([...paths.images.src], {
-      destination: __dirname + `/dist/public/images/${size}`,
+      destination: __dirname + `/dist/public/images/${percent}`,
       plugins: [
         imageminWebp({
           quality: quality,
           resize: {
-            width: size,
+            width: width,
             height: 0
           }
         })
@@ -129,7 +133,7 @@ task('watch', () => {
   watch(
     ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src, ...paths.images.src],
     {ignoreInitial: false},
-    series(styles, scripts, views)
+    series(styles, scripts, views, webpImages)
   );
 });
 
