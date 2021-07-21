@@ -10,7 +10,7 @@ const createCardElement = (product) => {
 
   cardElement.innerHTML = `
     <div class="card product-list-card hover-elevated m-1 p-0 col-12">
-      <img src="${product.imageUrl}" class="card-img-top" alt="bag">
+      <img src="${product.images.small}" class="card-img-top" alt="bag">
       <div class="card-body">
         <h5 class="card-title">${product.name}</h5>
         <div class="card-text-container">

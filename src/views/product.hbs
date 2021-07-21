@@ -5,12 +5,21 @@
         <div class="col-md-6 border-end">
           <div class="d-flex flex-column justify-content-center">
             <div class="main_image">
-              <img src="{{ product.imageUrl }}" id="main_product_image" alt="{{ product.name }}" width="350"></div>
+              <img src="{{ product.images.original }}"
+                srcset="{{ product.images.original }} 1x, {{ product.images.large }} 2x, {{ product.images.medium }} 3x, {{ product.images.small }} 4x"
+                sizes="100vw"
+                width="350"
+                alt="{{ product.name }}"
+                class="cover-photo"
+              >
+            </div>
           </div>
 
           <div class="thumbnail_images">
             <ul id="thumbnail">
-              <li><img onclick="changeImage(this)" src="{{ product.imageUrl }}" width="70"></li>
+              <li>
+                <img onclick="changeImage(this)" src="{{ product.images.small }}" width="70">
+              </li>
             </ul>
           </div>
         </div>
