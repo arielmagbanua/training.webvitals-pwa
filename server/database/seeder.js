@@ -72,7 +72,12 @@ fs.readdir(DIR_PATH, function (err, files) {
       "sku": sku,
       "name": productName,
       "description": productDescription + additionalDescription,
-      "imageUrl": BASE_URL + 'images/' + changeFileExtension(filename),
+      "images": {
+        "original": BASE_URL + 'images/' + changeFileExtension(filename),
+        "small": BASE_URL + 'images/25/' + changeFileExtension(filename),
+        "medium": BASE_URL + 'images/50/' + changeFileExtension(filename),
+        "large": BASE_URL + 'images/75/' + changeFileExtension(filename)
+      },
       "url": BASE_URL + 'products/' + sku,
       "category": categories,
       "brand": brand,
