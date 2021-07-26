@@ -1,8 +1,6 @@
-const { src, dest, series, watch } = require('gulp');
+const {src, dest, series, watch} = require('gulp');
 const sass = require('gulp-sass');
-const sourcemaps = require("gulp-sourcemaps");
-const babel = require("gulp-babel");
-const rollup = require('gulp-rollup');
+const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const flatten = require('gulp-flatten');
 
@@ -44,59 +42,52 @@ const paths = {
 
 const views = (cb) => {
   src(paths.views.src)
-    .pipe(dest(paths.views.dest));
+      .pipe(dest(paths.views.dest));
 
   cb();
 }
 
 const styles = (cb) => {
   src(paths.scss.src)
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write("."))
-    .pipe(dest(paths.scss.dest));
+      .pipe(sourcemaps.init())
+      .pipe(sass().on('error', sass.logError))
+      .pipe(sourcemaps.write("."))
+      .pipe(dest(paths.scss.dest));
 
   cb();
 }
 
 const scripts = (cb) => {
-  const bootstrap = 'node_modules/bootstrap/dist/js/bootstrap.js';
   const indexJsPath = 'src/js/index.js';
   const productsJsPath = 'src/js/products.js';
 
   src([...paths.js.concat.files, indexJsPath])
-    .pipe(sourcemaps.init())
-    .pipe(concat(paths.js.files.index))
-    .pipe(sourcemaps.write("."))
-    .pipe(dest(paths.js.dest));
+      .pipe(sourcemaps.init())
+      .pipe(concat(paths.js.files.index))
+      .pipe(sourcemaps.write("."))
+      .pipe(dest(paths.js.dest));
 
   src([...paths.js.concat.files, productsJsPath])
       .pipe(sourcemaps.init())
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
 
-  // src([...paths.js.concat.files, paths.js.src])
-  //   .pipe(sourcemaps.init())
-  //   .pipe(concat(paths.js.files.index))
-  //   .pipe(sourcemaps.write("."))
-  //   .pipe(dest(paths.js.dest));
-
   cb();
 }
 
 const images = (cb) => {
   src([...paths.images.src])
-    .pipe(flatten())
-    .pipe(dest(paths.images.dest));
+      .pipe(flatten())
+      .pipe(dest(paths.images.dest));
 
   cb();
 }
 
 exports.watch = () => {
   watch(
-    ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src, ...paths.images.src],
-    {ignoreInitial: false},
-    series(styles, scripts, images, views)
+      ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src, ...paths.images.src],
+      {ignoreInitial: false},
+      series(styles, scripts, images, views)
   );
 }
 
