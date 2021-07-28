@@ -19,10 +19,11 @@ router.get('/products', (req, res, next) => {
 router.get('/products/:sku', async (req, res, next) => {
   const sku = req.params.sku;
 
-  const appUrl = process.env.APP_URL ?? 'http://127.0.0.1/';
+  const baseUrl = process.env.APP_URL ?? 'http://127.0.0.1';
+  const appUrl = baseUrl + ':' + process.env.PORT;
 
   // grab the product
-  const productUrl = appUrl + 'api/products/' + sku;
+  const productUrl = appUrl + '/api/products/' + sku;
   const product = await axios.get(productUrl);
 
   res.render('product', {
