@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "start-mon": "cross-env APP_URL=\"http://localhost:8080/\" nodemon server/index.js",
+    "start-mon": "cross-env APP_URL=\"http://localhost\" PORT=\"8080\" nodemon server/index.js",
     "watch": "gulp watch",
     "build": "gulp",
     "seed": "node server/database/seeder.js",
