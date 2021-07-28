@@ -1,7 +1,7 @@
 runtime: nodejs14
 instance_class: F1
 env_variables:
-  APP_URL: "http://127.0.0.1/"
+  APP_URL: "http://127.0.0.1"
 
 default_expiration: "3d 12h"
 
