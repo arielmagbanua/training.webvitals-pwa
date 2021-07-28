@@ -9,6 +9,7 @@
     "watch": "gulp watch",
     "build": "gulp",
     "seed": "node server/database/seeder.js",
+    "seed-production": "cross-env APP_URL=\"/\" node server/database/seeder.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
