@@ -71,20 +71,30 @@ const styles = (cb) => {
 const scripts = (cb) => {
   const indexJsPath = 'src/js/index.js';
   const productsJsPath = 'src/js/products.js';
+  const productJsPath = 'src/js/product.js';
 
+  // for index.js
   src([...paths.js.concat.files, indexJsPath])
-      .pipe(sourcemaps.init())
-      .pipe(concat(paths.js.files.index))
-      .pipe(uglify()) // minify js
-      .pipe(sourcemaps.write("."))
-      .pipe(dest(paths.js.dest));
+    .pipe(sourcemaps.init())
+    .pipe(concat(paths.js.files.index))
+    .pipe(uglify()) // minify js
+    .pipe(sourcemaps.write("."))
+    .pipe(dest(paths.js.dest));
 
+  // for products.js
   src([...paths.js.concat.files, productsJsPath])
-      .pipe(sourcemaps.init())
-      .pipe(concat(paths.js.files.products))
-      .pipe(uglify()) // minify js
-      .pipe(sourcemaps.write("."))
-      .pipe(dest(paths.js.dest));
+    .pipe(sourcemaps.init())
+    .pipe(concat(paths.js.files.products))
+    .pipe(uglify()) // minify js
+    .pipe(sourcemaps.write("."))
+    .pipe(dest(paths.js.dest));
+
+  // for bootstrap.js
+  src([...paths.js.concat.files])
+    .pipe(sourcemaps.init())
+    .pipe(uglify()) // minify js
+    .pipe(sourcemaps.write("."))
+    .pipe(dest(paths.js.dest));
 
   cb();
 }
