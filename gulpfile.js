@@ -81,6 +81,7 @@ const scripts = (cb) => {
 
   src([...paths.js.concat.files, productsJsPath])
       .pipe(sourcemaps.init())
+      .pipe(concat(paths.js.files.products))
       .pipe(uglify()) // minify js
       .pipe(sourcemaps.write("."))
       .pipe(dest(paths.js.dest));
