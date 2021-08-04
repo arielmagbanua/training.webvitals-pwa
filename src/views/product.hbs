@@ -8,7 +8,8 @@
               <img src="{{ product.images.original }}"
                 srcset="{{ product.images.original }} 1x, {{ product.images.large }} 2x, {{ product.images.medium }} 3x, {{ product.images.small }} 4x"
                 sizes="100vw"
-                width="350"
+                width="540"
+                height="360"
                 alt="{{ product.name }}"
                 class="cover-photo"
               >
@@ -18,7 +19,7 @@
           <div class="thumbnail_images">
             <ul id="thumbnail">
               <li>
-                <img onclick="changeImage(this)" src="{{ product.images.small }}" width="70">
+                <img onclick="changeImage(this)" src="{{ product.images.small }}" width="80" height="54" alt="{{ product.name }}">
               </li>
             </ul>
           </div>
