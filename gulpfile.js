@@ -45,25 +45,25 @@ const paths = {
 
 const views = (cb) => {
   src(paths.views.src)
-      .pipe(dest(paths.views.dest));
+    .pipe(dest(paths.views.dest));
 
   cb();
 }
 
 const styles = (cb) => {
   src(paths.scss.src)
-      .pipe(sourcemaps.init())
-      .pipe(sass().on('error', sass.logError))
-      .pipe(cleanCSS({ // minify css
-        compatibility: 'ie8',
-        level: {
-          1: {
-            specialComments: 0
-          }
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS({ // minify css
+      compatibility: 'ie8',
+      level: {
+        1: {
+          specialComments: 0
         }
-      }))
-      .pipe(sourcemaps.write("."))
-      .pipe(dest(paths.scss.dest));
+      }
+    }))
+    .pipe(sourcemaps.write("."))
+    .pipe(dest(paths.scss.dest));
 
   cb();
 }
@@ -71,7 +71,6 @@ const styles = (cb) => {
 const scripts = (cb) => {
   const indexJsPath = 'src/js/index.js';
   const productsJsPath = 'src/js/products.js';
-  const productJsPath = 'src/js/product.js';
 
   // for index.js
   src([...paths.js.concat.files, indexJsPath])
