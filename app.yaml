@@ -2,13 +2,19 @@ runtime: nodejs14
 instance_class: F1
 env_variables:
   APP_URL: "http://127.0.0.1/"
+
+default_expiration: 2s
+
 handlers:
 - url: /images
   static_dir: dist/public/images
+  expiration: 10s
 - url: /css
   static_dir: dist/public/css
+  expiration: 10s
 - url: /js
   static_dir: dist/public/js
+  expiration: 10s
 - url: /.*
   secure: always
   redirect_http_response_code: 301
