@@ -3,18 +3,20 @@ instance_class: F1
 env_variables:
   APP_URL: "http://127.0.0.1/"
 
-default_expiration: 2s
+default_expiration: "1s"
 
 handlers:
 - url: /images
   static_dir: dist/public/images
-  expiration: 10s
+  expiration: "1s"
 - url: /css
   static_dir: dist/public/css
-  expiration: 10s
+  http_headers:
+    Cache-Control: no-cache
 - url: /js
   static_dir: dist/public/js
-  expiration: 10s
+  http_headers:
+    Cache-Control: no-cache
 - url: /.*
   secure: always
   redirect_http_response_code: 301
