@@ -5,10 +5,11 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "start-mon": "nodemon server/index.js",
+    "start-mon": "cross-env APP_URL=\"http://localhost\" PORT=\"8080\" nodemon server/index.js",
     "watch": "gulp watch",
     "build": "gulp",
     "seed": "node server/database/seeder.js",
+    "seed-production": "cross-env APP_URL=\"/\" node server/database/seeder.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,18 +27,23 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^5.0.1",
     "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
     "json-server": "^0.16.3",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "faker": "^5.5.3",
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
-    "gulp-flatten": "^0.4.0",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "imagemin": "^7.0.1",
+    "imagemin-webp": "^6.0.0",
     "nodemon": "^2.0.7"
   }
 }

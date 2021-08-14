@@ -16,14 +16,19 @@ const createCarouselElement = (product, index) => {
 
   // add the child element string
   carouselElement.innerHTML = `
-     <img class="cover-photo" src="${product.imageUrl}">
-     <div class="container">
-       <div class="carousel-caption ${textPosition}">
-         <h1>${product.name}</h1>
-         <p>${product.description}</p>
-         <p><a class="btn btn-lg btn-primary" href="${product.url}">Buy Now!</a></p>
-       </div>
-     </div>
+    <img src="${product.images.original}"
+      srcset="${product.images.original} 1x, ${product.images.large} 2x, ${product.images.medium} 3x, ${product.images.small} 4x"
+      sizes="100vw"
+      alt="Image description"
+      class="cover-photo"
+    >
+    <div class="container">
+      <div class="carousel-caption ${textPosition}">
+        <h1>${product.name}</h1>
+        <p>${product.description}</p>
+        <p><a class="btn btn-lg btn-primary" href="${product.url}">Buy Now!</a></p>
+      </div>
+    </div>
   `;
 
   return carouselElement;
@@ -35,7 +40,7 @@ const createFeaturetteElement = (product) => {
 
   featuretteElement.innerHTML = `
     <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg"
-       style="background-image: url('${product.imageUrl}');"
+       style="background-image: url('${product.images.medium}');"
     >
       <a href="${product.url}">
         <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
@@ -71,7 +76,7 @@ const createNewArrivalElement = (product, index) => {
   const imageBlockBlock = `
       <div class="col-md-5 new-arrival-img-container">
         <a href="${product.url}">
-          <img src="${product.imageUrl}" class="new-arrival-img img-fluid" alt="${product.name}">
+          <img src="${product.images.medium}" class="new-arrival-img img-fluid" alt="${product.name}">
         </a>
       </div>
   `;

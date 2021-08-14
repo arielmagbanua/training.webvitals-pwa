@@ -8,6 +8,16 @@ const DIR_PATH = path.join(__dirname, '../../src/images/bags');
 const DB_PATH = path.join(__dirname, 'db.json');
 const BASE_URL = process.env.APP_URL || '/';
 
+// changes the file extension of the image
+const changeFileExtension = (filename, extension = '.webp') => {
+  if (filename) {
+    let pos = filename.lastIndexOf(".");
+    return filename.substr(0, pos < 0 ? filename.length : pos) + extension;
+  }
+
+  return null;
+}
+
 // passing directoryPath and callback function
 fs.readdir(DIR_PATH, function (err, files) {
   // handling error
@@ -62,8 +72,13 @@ fs.readdir(DIR_PATH, function (err, files) {
       "sku": sku,
       "name": productName,
       "description": productDescription + additionalDescription,
-      "imageUrl": BASE_URL + 'images/' + filename,
-      "url": BASE_URL + 'products/' + sku,
+      "images": {
+        "original": BASE_URL + 'images/' + changeFileExtension(filename),
+        "small": BASE_URL + 'images/25/' + changeFileExtension(filename),
+        "medium": BASE_URL + 'images/50/' + changeFileExtension(filename),
+        "large": BASE_URL + 'images/75/' + changeFileExtension(filename)
+      },
+      "url": BASE_URL + 'products?sku=' + sku,
       "category": categories,
       "brand": brand,
       "price": productPrice,

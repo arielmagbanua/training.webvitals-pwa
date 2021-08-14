@@ -6,11 +6,14 @@ const allProducts = async () => {
 const createCardElement = (product) => {
   const cardElement = document.createElement('div');
   cardElement.classList.add('card-container');
-  cardElement.classList.add('col-3');
+  cardElement.classList.add('col-xl-3');
+  cardElement.classList.add('col-lg-4');
+  cardElement.classList.add('col-md-6');
+  cardElement.classList.add('col-sm-12');
 
   cardElement.innerHTML = `
     <div class="card product-list-card hover-elevated m-1 p-0 col-12">
-      <img src="${product.imageUrl}" class="card-img-top" alt="bag">
+      <img src="${product.images.small}" class="card-img-top" alt="bag">
       <div class="card-body">
         <h5 class="card-title">${product.name}</h5>
         <div class="card-text-container">

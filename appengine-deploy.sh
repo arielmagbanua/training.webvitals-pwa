@@ -2,6 +2,7 @@
 
 npm run build
 
-npm run seed
+npm run seed-production
 
 gcloud app deploy --project pwa-webvitals
+# gcloud app deploy --project pwa-webvitals-optimized
