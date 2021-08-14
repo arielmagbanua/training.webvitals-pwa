@@ -3,24 +3,24 @@ instance_class: F1
 env_variables:
   APP_URL: "http://127.0.0.1"
 
-default_expiration: "1s"
+default_expiration: 30d
 
 handlers:
 - url: /images
   static_dir: dist/public/images
-  # expiration: 370d
+  expiration: 370d
   http_headers:
     Cache-Control: private
 
 - url: /css
   static_dir: dist/public/css
-  # expiration: 370d
+  expiration: 370d
   http_headers:
     Cache-Control: private
 
 - url: /js
   static_dir: dist/public/js
-  # expiration: 370d
+  expiration: 370d
   http_headers:
     Cache-Control: private
 
