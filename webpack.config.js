@@ -2,8 +2,14 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    index: './src/js/index.js',
-    products: './src/js/products.js',
+    index: [
+      './src/js/index.styles.js',
+      './src/js/index.js'
+    ],
+    products: [
+      './src/js/products.styles.js',
+      './src/js/products.js'
+    ],
     vendor: [
       './node_modules/bootstrap/dist/js/bootstrap.js'
     ]
@@ -19,6 +25,17 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.(scss|sass|css)$/,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
       }
     ]
   },
