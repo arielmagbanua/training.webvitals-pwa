@@ -10,6 +10,7 @@
     "build": "gulp",
     "seed": "node server/database/seeder.js",
     "seed-production": "cross-env APP_URL=\"/\" node server/database/seeder.js",
+    "webpack": "npx webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -35,6 +36,9 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "faker": "^5.5.3",
     "gulp": "^4.0.2",
