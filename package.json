@@ -10,7 +10,8 @@
     "build": "gulp",
     "seed": "node server/database/seeder.js",
     "seed-production": "cross-env APP_URL=\"/\" node server/database/seeder.js",
-    "webpack": "npx webpack --config webpack.config.js",
+    "webpack-dev": "npx webpack --config webpack.config.js --mode=development",
+    "webpack-prod": "npx webpack --config webpack.config.js --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
