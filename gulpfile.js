@@ -2,11 +2,6 @@ const {src, dest, series, watch, task} = require('gulp');
 var del = require('del');
 const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
-const sass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const cleanCSS = require('gulp-clean-css');
 const imagemin = require('imagemin');
 const imageminWebp = require('imagemin-webp');
 
@@ -45,31 +40,6 @@ const paths = {
     dest: 'dist/public/images/'
   }
 };
-
-const views = (cb) => {
-  src(paths.views.src)
-    .pipe(dest(paths.views.dest));
-
-  cb();
-}
-
-const styles = (cb) => {
-  src(paths.scss.src)
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(cleanCSS({ // minify css
-      compatibility: 'ie8',
-      level: {
-        1: {
-          specialComments: 0
-        }
-      }
-    }))
-    .pipe(sourcemaps.write("."))
-    .pipe(dest(paths.scss.dest));
-
-  cb();
-}
 
 const scripts = (cb) => {
   // this include the compiling of css and sass files
