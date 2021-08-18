@@ -6,13 +6,15 @@
   "scripts": {
     "start": "node server/index.js",
     "start-mon": "cross-env APP_URL=\"http://localhost\" PORT=\"8080\" nodemon server/index.js",
-    "watch": "gulp watch",
-    "build": "gulp",
     "seed": "node server/database/seeder.js",
     "seed-production": "cross-env APP_URL=\"/\" node server/database/seeder.js",
     "webpack-dev": "npx webpack --config webpack.config.js --mode=development",
     "webpack-prod": "npx webpack --config webpack.config.js --mode=production",
     "gulp-images": "gulp images",
+    "gulp-scripts": "gulp scripts",
+    "watch": "gulp watch",
+    "build": "gulp",
+    "build-prod": "cross-env NODE_ENV=production gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -46,6 +48,7 @@
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "css-loader": "^6.2.0",
+    "del": "^6.0.0",
     "faker": "^5.5.3",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
@@ -61,6 +64,7 @@
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "webpack": "^5.50.0",
-    "webpack-cli": "^4.8.0"
+    "webpack-cli": "^4.8.0",
+    "webpack-stream": "^6.1.2"
   }
 }

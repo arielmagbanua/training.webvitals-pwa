@@ -1,7 +1,16 @@
 const path = require('path');
 
 module.exports = (env, argv) => {
+  // resolve the mode
+  let mode = 'development';
+  if (!argv && !env.NODE_ENV) {
+    mode = 'development'
+  } else {
+    mode = argv ? argv.mode : env.NODE_ENV;
+  }
+
   return {
+    mode: mode,
     entry: {
       index: [
         './src/js/index.styles.js',
@@ -46,7 +55,7 @@ module.exports = (env, argv) => {
       ]
     },
     output: {
-      filename: argv.mode == 'development' ? '[name].bundle.js' : '[name].[contenthash].bundle.js',
+      filename: mode == 'development' ? '[name].bundle.js' : '[name].[contenthash].bundle.js',
       path: path.resolve(__dirname, 'dist/public/js'),
       clean: true,
     },

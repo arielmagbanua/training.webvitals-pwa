@@ -1,4 +1,7 @@
 const {src, dest, series, watch, task} = require('gulp');
+var del = require('del');
+const webpackStream = require('webpack-stream');
+const webpack = require('webpack');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
@@ -69,30 +72,11 @@ const styles = (cb) => {
 }
 
 const scripts = (cb) => {
-  const indexJsPath = 'src/js/index.js';
-  const productsJsPath = 'src/js/products.js';
+  // this include the compiling of css and sass files
+  const webpackConfig = require('./webpack.config.js')(process.env);
 
-  // for index.js
-  src([...paths.js.concat.files, indexJsPath])
-    .pipe(sourcemaps.init())
-    .pipe(concat(paths.js.files.index))
-    .pipe(uglify()) // minify js
-    .pipe(sourcemaps.write("."))
-    .pipe(dest(paths.js.dest));
-
-  // for products.js
-  src([...paths.js.concat.files, productsJsPath])
-    .pipe(sourcemaps.init())
-    .pipe(concat(paths.js.files.products))
-    .pipe(uglify()) // minify js
-    .pipe(sourcemaps.write("."))
-    .pipe(dest(paths.js.dest));
-
-  // for bootstrap.js
-  src([...paths.js.concat.files])
-    .pipe(sourcemaps.init())
-    .pipe(uglify()) // minify js
-    .pipe(sourcemaps.write("."))
+  src([paths.js.src, paths.scss.src])
+    .pipe(webpackStream(webpackConfig, webpack)) // pipe the webpack
     .pipe(dest(paths.js.dest));
 
   cb();
@@ -139,13 +123,25 @@ const webpImages = (cb) => {
   cb();
 }
 
+const clean = (cb) => {
+  // clean up the dist folder
+  del([
+    'dist/**'
+  ])
+
+  cb();
+}
+
+const tasks = series(clean, scripts, webpImages);
+
 task('watch', () => {
   watch(
     ['src/css/*.css', paths.scss.src, paths.js.src, paths.views.src, ...paths.images.src],
     {ignoreInitial: false},
-    series(styles, scripts, views, webpImages)
+    tasks
   );
 });
 
-task('default', series(styles, scripts, views, webpImages));
+task('default', tasks);
+task('scripts', scripts);
 task('images', webpImages);
