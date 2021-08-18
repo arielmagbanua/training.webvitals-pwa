@@ -12,6 +12,7 @@
     "seed-production": "cross-env APP_URL=\"/\" node server/database/seeder.js",
     "webpack-dev": "npx webpack --config webpack.config.js --mode=development",
     "webpack-prod": "npx webpack --config webpack.config.js --mode=production",
+    "gulp-images": "gulp images",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/arielmagbanua/training.webvitals-pwa#readme",
   "dependencies": {
+    "@babel/runtime": "^7.15.3",
     "@popperjs/core": "^2.9.3",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
@@ -33,11 +35,13 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
+    "file-regex": "^3.1.0",
     "json-server": "^0.16.3",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
+    "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
@@ -49,6 +53,7 @@
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
+    "handlebars-webpack-plugin": "^2.2.1",
     "imagemin": "^7.0.1",
     "imagemin-webp": "^6.0.0",
     "nodemon": "^2.0.7",
