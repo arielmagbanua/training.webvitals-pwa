@@ -10,18 +10,23 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 // Used to limit entries in cache, remove entries after a certain period of time
 import { ExpirationPlugin } from 'workbox-expiration';
 
-// Cache page navigations (html) with a Network First strategy
+// Cache images with a Cache First strategy
 registerRoute(
-  // Check to see if the request is a navigation to a new page
-  ({ request }) => request.mode === 'navigate',
-  // Use a Network First caching strategy
-  new NetworkFirst({
-    // Put all cached files in a cache named 'pages'
-    cacheName: 'pages',
+  // Check to see if the request's destination is style for an image
+  ({ request }) => request.destination === 'image',
+  // Use a Cache First caching strategy
+  new CacheFirst({
+    // Put all cached files in a cache named 'images'
+    cacheName: 'images',
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
         statuses: [200],
+      }),
+      // Don't cache more than 50 items, and expire them after 30 days
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 60 * 60 * 24 * 30, // 30 Days
       }),
     ],
   }),
@@ -47,25 +52,19 @@ registerRoute(
   }),
 );
 
-// Cache images with a Cache First strategy
+// Cache page navigations (html) with a Network First strategy
 registerRoute(
-  // Check to see if the request's destination is style for an image
-  ({ request }) => request.destination === 'image',
-  // Use a Cache First caching strategy
-  new CacheFirst({
-    // Put all cached files in a cache named 'images'
-    cacheName: 'images',
+  // Check to see if the request is a navigation to a new page
+  ({ request }) => request.mode === 'navigate',
+  // Use a Network First caching strategy
+  new NetworkFirst({
+    // Put all cached files in a cache named 'pages'
+    cacheName: 'pages',
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
         statuses: [200],
       }),
-      // Don't cache more than 50 items, and expire them after 30 days
-      new ExpirationPlugin({
-        maxEntries: 50,
-        maxAgeSeconds: 60 * 60 * 24 * 30, // 30 Days
-      }),
     ],
   }),
 );
-
