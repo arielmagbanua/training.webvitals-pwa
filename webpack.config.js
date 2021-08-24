@@ -22,7 +22,11 @@ module.exports = (env, argv) => {
       ],
       vendor: [
         './node_modules/bootstrap/dist/js/bootstrap.js'
-      ]
+      ],
+      serviceWorker: {
+        import: './src/js/sw.js',
+        filename: '../sw.js'
+      }
     },
     module: {
       rules: [
