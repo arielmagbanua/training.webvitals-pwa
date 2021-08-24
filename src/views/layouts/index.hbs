@@ -41,5 +41,15 @@
 
 <script src="{{{ vendorJsPath }}}"></script>
 <script src="{{{ jsPath }}}"></script>
+<script>
+  // Check that service workers are supported
+  if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js');
+      console.log('Service Worker Registered!');
+    });
+  }
+</script>
 </body>
 </html>
