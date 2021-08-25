@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = (env, argv) => {
   // resolve the mode
@@ -61,6 +62,16 @@ module.exports = (env, argv) => {
         }
       ]
     },
+    plugins: [
+      new CopyPlugin({
+        patterns: [
+          {
+            from: './src/js/manifest.json',
+            to: '../'
+          },
+        ],
+      }),
+    ],
     output: {
       filename: mode == 'development' ? '[name].bundle.js' : '[name].[contenthash].bundle.js',
       path: path.resolve(__dirname, 'dist/public/js'),
