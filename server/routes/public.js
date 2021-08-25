@@ -50,7 +50,7 @@ router.get('/products', async (req, res, next) => {
   const product = await axios.get(productUrl);
 
   // resolve the correct product js bundle
-  const pageJs = await findAsset(publicJsDir, /product\.([a-zA-Z0-9]+)\.bundle\.js$/);
+  const pageJs = await findAsset(publicJsDir, /products\.([a-zA-Z0-9]+)\.bundle\.js$/);
 
   res.render('product', {
     layout: 'product',
