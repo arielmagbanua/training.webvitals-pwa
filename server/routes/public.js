@@ -21,7 +21,8 @@ async function findAsset(directory, regexPattern) {
 router.get('/', async (req, res, next) => {
   // resolve the correct index js bundle
   const pageJs = await findAsset(publicJsDir, /index\.([a-zA-Z0-9]+)\.bundle\.js$/);
-  const vendorJs = await findAsset(publicJsDir, /vendor\.([a-zA-Z0-9]+)\.bundle\.js$/);
+  // resolve the correct vendor and styling bundle
+  const vendorJs = await findAsset(publicJsDir, /indexVendor\.([a-zA-Z0-9]+)\.bundle\.js$/);
 
   res.render('index', {
     layout: 'index',
@@ -33,12 +34,17 @@ router.get('/', async (req, res, next) => {
 router.get('/products', async (req, res, next) => {
   const sku = req.query.sku;
 
+  // resolve the correct vendor and styling bundle
+  const vendorJs = await findAsset(publicJsDir, /productsVendor\.([a-zA-Z0-9]+)\.bundle\.js$/);
+
   if (!sku) {
     // resolve the correct products js bundle
     const pageJs = await findAsset(publicJsDir, /products\.([a-zA-Z0-9]+)\.bundle\.js$/);
+
     return res.render('products', {
       layout: 'products',
-      jsPath: '/js/' + pageJs
+      jsPath: '/js/' + pageJs,
+      vendorJsPath: '/js/' + vendorJs,
     });
   }
 
@@ -49,13 +55,10 @@ router.get('/products', async (req, res, next) => {
   const productUrl = appUrl + '/api/products/' + sku;
   const product = await axios.get(productUrl);
 
-  // resolve the correct product js bundle
-  const pageJs = await findAsset(publicJsDir, /products\.([a-zA-Z0-9]+)\.bundle\.js$/);
-
   res.render('product', {
     layout: 'product',
     product: product.data,
-    jsPath: '/js/' + pageJs
+    vendorJsPath: '/js/' + vendorJs,
   });
 });
 
