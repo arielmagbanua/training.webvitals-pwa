@@ -13,19 +13,19 @@ module.exports = (env, argv) => {
   return {
     mode: mode,
     entry: {
-      indexVendor: [
-        './src/js/index.styles.js',
-        './node_modules/bootstrap/dist/js/bootstrap.js'
+      indexStyles: [
+        './src/js/index.styles.js'
       ],
       index: [
-        './src/js/index.js'
-      ],
-      productsVendor: [
-        './src/js/products.styles.js',
+        './src/js/index.js',
         './node_modules/bootstrap/dist/js/bootstrap.js'
       ],
+      productsStyles: [
+        './src/js/products.styles.js'
+      ],
       products: [
-        './src/js/products.js'
+        './src/js/products.js',
+        './node_modules/bootstrap/dist/js/bootstrap.js'
       ],
       serviceWorker: {
         import: './src/js/sw.js',
