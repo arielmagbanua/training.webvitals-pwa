@@ -22,12 +22,12 @@ router.get('/', async (req, res, next) => {
   // resolve the correct index js bundle
   const pageJs = await findAsset(publicJsDir, /index\.([a-zA-Z0-9]+)\.bundle\.js$/);
   // resolve the correct vendor and styling bundle
-  const vendorJs = await findAsset(publicJsDir, /indexVendor\.([a-zA-Z0-9]+)\.bundle\.js$/);
+  const stylesJs = await findAsset(publicJsDir, /indexStyles\.([a-zA-Z0-9]+)\.bundle\.js$/);
 
   res.render('index', {
     layout: 'index',
     jsPath: '/js/' + pageJs,
-    vendorJsPath: '/js/' + vendorJs,
+    stylesJsPath: '/js/' + stylesJs,
   });
 });
 
@@ -35,7 +35,7 @@ router.get('/products', async (req, res, next) => {
   const sku = req.query.sku;
 
   // resolve the correct vendor and styling bundle
-  const vendorJs = await findAsset(publicJsDir, /productsVendor\.([a-zA-Z0-9]+)\.bundle\.js$/);
+  const stylesJs = await findAsset(publicJsDir, /productsStyles\.([a-zA-Z0-9]+)\.bundle\.js$/);
 
   if (!sku) {
     // resolve the correct products js bundle
@@ -44,7 +44,7 @@ router.get('/products', async (req, res, next) => {
     return res.render('products', {
       layout: 'products',
       jsPath: '/js/' + pageJs,
-      vendorJsPath: '/js/' + vendorJs,
+      stylesJsPath: '/js/' + stylesJs,
     });
   }
 
@@ -58,7 +58,7 @@ router.get('/products', async (req, res, next) => {
   res.render('product', {
     layout: 'product',
     product: product.data,
-    vendorJsPath: '/js/' + vendorJs,
+    stylesJsPath: '/js/' + stylesJs,
   });
 });
 
