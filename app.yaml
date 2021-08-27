@@ -24,6 +24,11 @@ handlers:
   http_headers:
     Cache-Control: private
 
+- url: /sw.js
+  static_dir: dist/public
+  http_headers:
+    Cache-Control: no-store
+
 - url: /.*
   secure: always
   redirect_http_response_code: 301
