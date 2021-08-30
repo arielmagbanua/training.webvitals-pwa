@@ -39,11 +39,13 @@ const createCardElement = (product) => {
     // get the grid to be populated by products
     const productsGrid = document.getElementById('products');
 
-    allProducts().then((products) => {
-      products.forEach((product) => {
-        const element = createCardElement(product);
-        productsGrid.appendChild(element);
+    if (productsGrid) {
+      allProducts().then((products) => {
+        products.forEach((product) => {
+          const element = createCardElement(product);
+          productsGrid.appendChild(element);
+        });
       });
-    });
+    }
   });
 })();

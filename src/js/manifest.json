@@ -1,0 +1,17 @@
+{
+  "name": "Ecommerce Store",
+  "short_name": "E-Store",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#212529",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "https://image.flaticon.com/icons/png/512/253/253298.png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

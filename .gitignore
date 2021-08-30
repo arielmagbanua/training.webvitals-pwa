@@ -106,3 +106,5 @@ dist
 .idea
 
 server/database/db.json
+
+testing.js

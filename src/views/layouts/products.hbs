@@ -6,9 +6,12 @@
   <meta name="author" content="Ariel Magbanua">
   <meta name="description" content="The complete list of products in the store.">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  {{> manifest }}
+
   <title>Ecommerce Store</title>
 
-  <link href="/css/products.css" rel="stylesheet">
+  <script src="{{{ stylesJsPath }}}"></script>
 </head>
 <body>
 <header>
@@ -41,6 +44,6 @@
 </header>
 {{{ body }}}
 
-<script src="/js/products.js"></script>
+<script src="{{{ jsPath }}}"></script>
 </body>
 </html>

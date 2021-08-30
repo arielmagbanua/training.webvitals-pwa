@@ -6,10 +6,13 @@
   "scripts": {
     "start": "node server/index.js",
     "start-mon": "cross-env APP_URL=\"http://localhost\" PORT=\"8080\" nodemon server/index.js",
-    "watch": "gulp watch",
-    "build": "gulp",
     "seed": "node server/database/seeder.js",
     "seed-production": "cross-env APP_URL=\"/\" node server/database/seeder.js",
+    "gulp-images": "gulp images",
+    "gulp-scripts": "gulp scripts",
+    "watch": "gulp watch",
+    "build": "gulp",
+    "build-prod": "cross-env NODE_ENV=production gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +26,8 @@
   },
   "homepage": "https://github.com/arielmagbanua/training.webvitals-pwa#readme",
   "dependencies": {
+    "@babel/runtime": "^7.15.3",
+    "@popperjs/core": "^2.9.3",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^5.0.1",
@@ -30,20 +35,34 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
+    "file-regex": "^3.1.0",
     "json-server": "^0.16.3",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^9.0.1",
     "cross-env": "^7.0.3",
+    "css-loader": "^6.2.0",
+    "del": "^6.0.0",
     "faker": "^5.5.3",
     "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-sass": "^4.1.0",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-uglify": "^3.0.2",
+    "handlebars-webpack-plugin": "^2.2.1",
     "imagemin": "^7.0.1",
     "imagemin-webp": "^6.0.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "sass": "^1.38.0",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-stream": "^6.1.2",
+    "workbox-cacheable-response": "^6.2.4",
+    "workbox-expiration": "^6.2.4",
+    "workbox-routing": "^6.2.4",
+    "workbox-strategies": "^6.2.4"
   }
 }

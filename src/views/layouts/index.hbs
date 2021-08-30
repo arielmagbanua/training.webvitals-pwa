@@ -6,9 +6,12 @@
   <meta name="author" content="Ariel Magbanua">
   <meta name="description" content="Ariel's simple ecommerce store appliation, which sells diverse collection of bags.">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  {{> manifest }}
+
   <title>Ecommerce Store</title>
 
-  <link href="/css/index.css" rel="stylesheet">
+  <script src="{{{ stylesJsPath }}}"></script>
 </head>
 <body>
 <header>
@@ -41,6 +44,16 @@
 </header>
 {{{ body }}}
 
-<script src="/js/index.js"></script>
+<script src="{{{ jsPath }}}"></script>
+<script>
+  // Check that service workers are supported
+  if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js');
+      console.log('Service Worker Registered!');
+    });
+  }
+</script>
 </body>
 </html>
