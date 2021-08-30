@@ -42,7 +42,7 @@ registerRoute(
     request.destination === 'script' ||
     request.destination === 'worker',
   // Use a Stale While Revalidate caching strategy
-  // The service worker will immediate loads the cached copy (styles, scripts, and workers)
+  // The service worker will immediately loads the cached copy (styles, scripts, and workers)
   // after that it will fetch the updated copies from the server via network and
   // loads it in placed of the cached ones.
   new StaleWhileRevalidate({
@@ -57,15 +57,15 @@ registerRoute(
   }),
 );
 
-
 // Cache page navigations (html) with a Network First strategy
 registerRoute(
   // Check to see if the request is a navigation to a new page
   ({ request }) => request.mode === 'navigate',
   // Use a Network First caching strategy.
-  // The service worker will fetch the content of the page from the server via network first
-  // then it will fallback to cache if there's no network available.
-  new NetworkFirst({
+  // The service worker will immediately load the content of the page from the cache
+  // after that it will fetch the updated copies from the server via network and
+  // loads it in placed of the cached ones.
+  new StaleWhileRevalidate({
     // Put all cached files in a cache named 'pages'
     cacheName: 'pages',
     plugins: [
