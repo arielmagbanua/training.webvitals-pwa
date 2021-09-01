@@ -17,6 +17,7 @@ module.exports = (env, argv) => {
         './src/js/index.styles.js'
       ],
       index: [
+        './src/js/addToHomeScreen.js',
         './src/js/index.js',
         './node_modules/bootstrap/dist/js/bootstrap.js'
       ],
