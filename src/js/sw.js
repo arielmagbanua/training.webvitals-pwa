@@ -5,14 +5,10 @@ import {
   CacheFirst,
 } from 'workbox-strategies';
 
-import { precacheAndRoute } from 'workbox-precaching';
-
 // Used for filtering matches based on status code, header, or both
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 // Used to limit entries in cache, remove entries after a certain period of time
 import { ExpirationPlugin } from 'workbox-expiration';
-
-
 
 // Cache images with a Cache First strategy
 registerRoute(

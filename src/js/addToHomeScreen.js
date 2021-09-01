@@ -5,7 +5,6 @@ window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();
   // Stash the event so it can be triggered later.
   installPromptEvent = event;
-  // Update the install UI to notify the user app can be installed
 
   // show add to homescreen button in mobile
   const installButton = document.getElementById('btn-install');
